@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video</title>
+
+    <style>
+        body {
+            background-image: linear-gradient(315deg, #566897, #080a1e);
+            height: 100vh;
+            overflow: hidden;
+
+        }
+
+        .container {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+
+        }
+
+        .video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .controle {
+            position: absolute;
+            top: 100%;
+            transform: translateY(-100%);
+            width: 100%;
+            height: 15%;
+            text-align: center;
+            opacity: 0;
+            transition: 0.4s;
+            border-radius:0 0  10px 10px
+        }
+
+        .video:hover+.controle,
+        .controle:hover {
+            opacity: 1;
+            background-color: #080a1ea1;
+        }
+
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.425);
+            border-radius: 50%;
+            width: 40px;
+            margin: 10px;
+            position: relative;
+            
+
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.747);
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="container">
+        <video id="video1" src="./amostra.mp4" class="video">
+
+        </video>
+
+        <div class="controle">
+            <img class="btn" onclick="retroceder()" src="botoes/replay_10_black_24dp.svg">
+            <img id="play" class="btn" onclick="play()" src="botoes/play_arrow_black_24dp.svg">
+            <img class="btn" onclick="stop()" src="botoes/stop_black_24dp.svg">
+            <img class="btn" onclick="avancar()" src="botoes/forward_10_black_24dp.svg">
+
+        </div>
+    </div>
+    <script>
+
+        let video = document.getElementById("video1");
+        let iconPlay = document.getElementById("play");
+        let count = 0;
+        function retroceder() {
+            video.currentTime -= 10;
+        }
+        function avancar() {
+            video.currentTime += 10;
+        }
+
+        function play() {
+
+
+            if (count % 2 === 0) {
+                video.play();
+                iconPlay.src = "botoes/pause_black_24dp.svg";
+            } else {
+                video.pause();
+                iconPlay.src = "botoes/play_arrow_black_24dp.svg";
+            }
+
+            count++;
+        }
+        function stop() {
+            video.pause();
+            video.currentTime = 0;
+            iconPlay.src = "botoes/play_arrow_black_24dp.svg";
+            count++;
+        }
+
+    </script>
+
+
+</body>
+
+</html>
